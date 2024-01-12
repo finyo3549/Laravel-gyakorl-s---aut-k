@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\Car;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::get('/api/car', function () {
+    return Car::all();
+});
+
+Route::post('/api/car', function (Request $request) {
+    $car = Car::create($request->all());
+    return response()->json($car, 201);
 });

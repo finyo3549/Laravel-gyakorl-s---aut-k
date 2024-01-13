@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('license-plate-number');
             $table->string('brand');
             $table->string('model');
-            $table->string('year-of-manufacture');
+            $table->integer('year-of-manufacture');
             $table->string('fuel-type');
             $table->timestamps();
         });

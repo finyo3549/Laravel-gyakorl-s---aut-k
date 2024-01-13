@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/api/car', function () {
+Route::get('/car', function () {
     return Car::all();
 });
 
-Route::post('/api/car', function (Request $request) {
+Route::post('/car', function (Request $request) {
     $car = Car::create($request->all());
     return response()->json($car, 201);
 });

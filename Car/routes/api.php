@@ -1,8 +1,9 @@
 <?php
+use App\Http\Controllers\API\CarController;
 use App\Models\Car;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\Carontroller;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,7 +22,9 @@ Route::get('/car', function () {
     return Car::all();
 });
 
-Route::post('/car', function (Request $request) {
+/*Route::post('/car', function (Request $request) {
     $car = Car::create($request->all());
     return response()->json($car, 201);
 });
+*/
+Route::apiResource('/car',CarController::class);

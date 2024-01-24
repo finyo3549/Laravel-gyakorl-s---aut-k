@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Car;
 
 class CarController extends Controller
 {
@@ -12,7 +13,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        //
+        return Car::all();
     }
 
     /**
@@ -20,7 +21,15 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $car = Car::create([
+            "licensePlateNumber" => $request->licensePlateNumber,
+            "brand" => $request->brand,
+            "model" => $request->model,
+            "yearOfManufacture" => $request->yearOfManufacture,
+            "fuelType" => $request->fuelType
+            
+        ]);
+        return $car;
     }
 
     /**
@@ -28,7 +37,11 @@ class CarController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $car = Car::find($id);
+        if(is_null($car)) {
+            return response()->json(["message"=>"No item found with id $id"],404);
+        }
+        return $car;
     }
 
     /**
